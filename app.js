@@ -1,32 +1,63 @@
-const http = require('http');
+const http = require("http");
+const fs = require('fs');
+const { compileFunction } = require("vm");
 
 const server = http.createServer((req, res) => {
-    console.log('server is created');
-
+    const url = req.url;
+    const method = req.method;
 
     res.setHeader('Content-Type', 'text/html');
-    if (req.url === '/') {
-        res.statusCode = 200;
-        res.end('<h1> Home Page </h1>');
-    }
-    else if (req.url === '/home') {
-        res.statusCode = 200;
-        res.end('<h1> Welcome Home </h1>');
-    }else if (req.url === '/about') {
-        res.statusCode = 200;
-        res.end('<h1> Welcome to about Us </h1>');
-    }else if (req.url === '/node') {
-        res.statusCode = 200;
-        res.end('<h1> Welcome to my node js Project </h1>');
-    }
-    else {
-        res.statusCode = 404;
-        res.end('<h1> Page Not Found </h1>');
-    }
+    if(url === '/'){
 
+        res.end(
+
+            `
+            <form action="/message" method = POST>
+            <lable> Name :</lable>
+            <input type= text name = "username"></input>
+            <button type = "submit"> Add </button>
+            </form>
+
+            `
+        );
+    }
+    else if(url === '/message' ){
+        // res.end(
+        //     " <h1> Message Page </h1>"
+        // );
+        let dataChunks = [];
+        req.on( 'data',(chunks)=>{
+            console.log(chunks);
+            dataChunks.push(chunks);
+        })
+
+        req.on('end', () => {
+            let combineBuffer = Buffer.concat(dataChunks);
+            console.log(combineBuffer);
+            let value = combineBuffer.toString().split('=')[1];
+            console.log(value);
+            fs.writeFile('555',value,(err)=>{
+                res.statusCode = 302;
+                res.setHeader('Location','/');
+                res.end();
+            })
+        });
+    }
+    else{
+        if(req.url === '/read'){
+            fs.readFile('555',(err,dataChunks)=>{
+                console.log(dataChunks.toString());
+                res.write(`<h1> Data form the file is: ${dataChunks.toString()} </h1>`);
+                res.end();
+
+            })
+        }
+    }
 });
 
+
 const port = 3000;
-server.listen(port, () => {
-    console.log('server is running on port ' + port);
+
+server.listen(port,() =>{
+    console.log("Server is running");
 })
