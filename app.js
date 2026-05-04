@@ -7,11 +7,17 @@ const server = http.createServer((req, res) => {
     const method = req.method;
 
     res.setHeader('Content-Type', 'text/html');
-    if(url === '/'){
+    if (url === '/') {
+        fs.readFile('555', (err, data) => {
+            let filedata = "No Data available";
+            if (!err) {
+                filedata = data.toString();
+            }
 
-        res.end(
+            res.write(`<h1> ${filedata}</h1>`);
+            res.write(
 
-            `
+                `
             <form action="/message" method = POST>
             <lable> Name :</lable>
             <input type= text name = "username"></input>
@@ -19,14 +25,16 @@ const server = http.createServer((req, res) => {
             </form>
 
             `
-        );
+            );
+            return res.end();
+        });
     }
-    else if(url === '/message' ){
+    else if (url === '/message') {
         // res.end(
         //     " <h1> Message Page </h1>"
         // );
         let dataChunks = [];
-        req.on( 'data',(chunks)=>{
+        req.on('data', (chunks) => {
             console.log(chunks);
             dataChunks.push(chunks);
         })
@@ -36,16 +44,16 @@ const server = http.createServer((req, res) => {
             console.log(combineBuffer);
             let value = combineBuffer.toString().split('=')[1];
             console.log(value);
-            fs.writeFile('555',value,(err)=>{
+            fs.writeFile('555', value, (err) => {
                 res.statusCode = 302;
-                res.setHeader('Location','/');
+                res.setHeader('Location', '/');
                 res.end();
             })
         });
     }
-    else{
-        if(req.url === '/read'){
-            fs.readFile('555',(err,dataChunks)=>{
+    else {
+        if (req.url === '/read') {
+            fs.readFile('555', (err, dataChunks) => {
                 console.log(dataChunks.toString());
                 res.write(`<h1> Data form the file is: ${dataChunks.toString()} </h1>`);
                 res.end();
@@ -58,6 +66,6 @@ const server = http.createServer((req, res) => {
 
 const port = 3000;
 
-server.listen(port,() =>{
+server.listen(port, () => {
     console.log("Server is running");
 })
