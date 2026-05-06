@@ -4,47 +4,49 @@ const app = express();
 
 app.use(express.json());
 
-let users = [
-{   id : 1, name : "Anchal"},
-{   id : 2, name : "Harish"},
-];
+let orders = [
+    {id : 1, name : "banana"},
+    {id : 2, name : "mango"},
+    {id : 3, name : "kiwi"}
+]
 
-
-app.use((req, res, next)=>{
-    req.user = "Guest";
-    next();
+let users  = [
+    {id : 1, name : "Anchal"},
+    {id : 2, name : "Harish"},
+]
+app.get('/', (req, res)=>{
+    res.setHeader('Content-Type', 'text/html');
+    res.send("<h1>This is Home Page</h1><h1>Orders</h1>");
 })
-app.get("/users", (req, res)=>{
+
+
+// Order section starts here
+
+app.get('/orders', (req, res)=>{
+    res.json(orders);
+})
+
+
+app.post('/orders', (req, res)=>{
+    const {name} = req.body;
+    const newOrder = {id : orders.length +1, name};
+    orders.push(newOrder);
+    res.status(201).json({message : "A new Order has been created.",data : newOrder});
+})
+
+// user section starts here
+
+app.get('/users', (req, res)=>{
     res.json(users);
 })
 
 
-app.post("/users", (req, res)=>{
+app.post('/users', (req, res)=>{
     const {name} = req.body;
-    const newUser = {id: users.length+1, name};
-
+    const newUser = {id : users.length +1, name};
     users.push(newUser);
-
-    res.status(201).json(newUser);
+    res.status(201).json({message : "A new User has been created.",data : newUser});
 })
 
 
-
-// Get Use by ID
-
-app.get("/users/:id", (req, res)=>{
-    const userID = parseInt(req.params.id); // to get ID from the URL
-    const user = users.find(u => u.id === userID);
-
-    if(!user){
-        return res.status(404).json({message: " User Not Found"});
-    }
-
-    res.json(user);
-})
-
-app.use("/welcome", (req, res, next)=>{
-    res.send(`<h1> Welcome , ${req.user}!</h1>`);
-})
-const port = 3000;
-app.listen(port, ()=> console.log(`Server is up and running on port http://localhost:${port}! Ready to handle requests.`));
+app.listen(3000, () => console.log("Online... http://localhost:3000"));
