@@ -4,49 +4,53 @@ const app = express();
 
 app.use(express.json());
 
-let orders = [
+let product = [
     {id : 1, name : "banana"},
     {id : 2, name : "mango"},
     {id : 3, name : "kiwi"}
 ]
 
-let users  = [
-    {id : 1, name : "Anchal"},
-    {id : 2, name : "Harish"},
+let catagory  = [
+    {id : 1, name : "Green"},
+    {id : 2, name : "Blue"},
 ]
 app.get('/', (req, res)=>{
     res.setHeader('Content-Type', 'text/html');
-    res.send("<h1>This is Home Page</h1><h1>Orders</h1>");
+    res.send("<h1>This is Home Page</h1><h1>Category and Products</h1>");
 })
 
 
 // Order section starts here
 
-app.get('/orders', (req, res)=>{
-    res.json(orders);
+app.get('/catagory', (req, res)=>{
+    res.json(catagory);
 })
 
 
-app.post('/orders', (req, res)=>{
+app.post('/catagory', (req, res)=>{
     const {name} = req.body;
-    const newOrder = {id : orders.length +1, name};
-    orders.push(newOrder);
-    res.status(201).json({message : "A new Order has been created.",data : newOrder});
+    const newCatagory = {id : catagory.length +1, name};
+    catagory.push(newCatagory);
+    res.status(201).json({message : "A new catagory has been created.",data : newCatagory});
 })
 
-// user section starts here
+// product section starts here
 
-app.get('/users', (req, res)=>{
-    res.json(users);
+app.get('/product', (req, res)=>{
+    res.json(product);
 })
 
 
-app.post('/users', (req, res)=>{
+app.post('/product', (req, res)=>{
     const {name} = req.body;
-    const newUser = {id : users.length +1, name};
-    users.push(newUser);
-    res.status(201).json({message : "A new User has been created.",data : newUser});
+    const newProduct = {id : product.length +1, name};
+    product.push(newProduct);
+    res.status(201).json({message : "A new product has been created.",data : newProduct});
 })
 
 
-app.listen(3000, () => console.log("Online... http://localhost:3000"));
+app.get('/*any', (req, res)=>{
+     res.status(404).send("<h1> 404- Page Not Found</h1>");
+})
+
+app.listen(4000, () => console.log("Online... http://localhost:4000"));
