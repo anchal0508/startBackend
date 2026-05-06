@@ -10,5 +10,9 @@ app.use('/users', userRoutes);
 app.use('/products', productRoutes);
 app.use('/cart', cartRoutes);
 
+app.use('/*any', (req, res)=>{
+    res.status(404).send('Page Not found Please check the link again');
+})
+
 app.listen(3000, ()=> console.log('Online ...'));
 
