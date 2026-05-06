@@ -1,17 +1,14 @@
 const express = require('express');
-const app = express();
-const coursesRoute = require('./routes/courses');
-const studentsRoute = require('./routes/students');
-const homeRoute = require('./routes/home');
+const userRoutes = require('./routes/userRoutes');
+const cartRoutes = require('./routes/cartRoutes');
+const productRoutes = require('./routes/productsRoutes');
 
+const app = express();
 app.use(express.json());
 
-app.use('/', homeRoute);
-app.use('/courses', coursesRoute);
-app.use('/students', studentsRoute);
-
-app.use('/*any', (req, res)=>{
-    res.status(404).send('Page not found');
-})
+app.use('/users', userRoutes);
+app.use('/products', productRoutes);
+app.use('/cart', cartRoutes);
 
 app.listen(3000, ()=> console.log('Online ...'));
+
