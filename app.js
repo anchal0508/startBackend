@@ -1,12 +1,13 @@
 const express = require('express');
+const bookRoute = require('./routes/books');
+
 const app = express();
-const orderRouter = require('./routes/orders');
-const userRouter = require('./routes/users');
 app.use(express.json());
-app.use('/orders', orderRouter);
-app.use('/users', userRouter);
 
 
 
+app.use('/books', bookRoute);
 
-app.listen(3000, ()=> console.log('Online...'));
+app.listen(3000, ()=>{
+    console.log('Online...');
+})
