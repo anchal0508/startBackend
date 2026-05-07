@@ -1,7 +1,102 @@
- [
-    {"id" : 1, "productName": "I-phone", "price" : 1500 },
-    {"id" : 1, "productName": "china Model", "price" : 2500 },
-    {"id" : 1, "productName": "Samsung", "price" : 3500 },
-    {"id" : 1, "productName": "Nokia", "price" : 4500 },
-    {"id" : 1, "productName": "Jio", "price" : 5500 }
+[
+  {
+    "id": 1,
+    "productName": "Orange",
+    "price": "556"
+  },
+  {
+    "id": 2,
+    "productName": "Orange",
+    "price": "556"
+  },
+  {
+    "id": 3,
+    "productName": "Apple",
+    "price": "556"
+  },
+  {
+    "id": 4,
+    "productName": "Apple",
+    "price": "550"
+  },
+  {
+    "id": 5,
+    "productName": "Apple",
+    "price": "550"
+  },
+  {
+    "id": 6,
+    "productName": "Hello",
+    "price": "78"
+  },
+  {
+    "id": 7,
+    "productName": "",
+    "price": 0
+  },
+  {
+    "id": 8,
+    "productName": "Apple",
+    "price": "89"
+  },
+  {
+    "id": 9,
+    "productName": "Apple",
+    "price": "89"
+  },
+  {
+    "id": 10,
+    "productName": "skldf",
+    "price": "d555"
+  },
+  {
+    "id": 11,
+    "productName": "Orange",
+    "price": "78"
+  },
+  {
+    "id": 12,
+    "productName": "Orange",
+    "price": "78"
+  },
+  {
+    "id": 13,
+    "productName": "Orange",
+    "price": "78"
+  },
+  {
+    "id": 14,
+    "productName": "dsf",
+    "price": "5"
+  },
+  {
+    "id": 15,
+    "productName": "dsf",
+    "price": "5"
+  },
+  {
+    "id": 16,
+    "productName": "sid",
+    "price": "78"
+  },
+  {
+    "id": 17,
+    "productName": "sid",
+    "price": "78"
+  },
+  {
+    "id": 18,
+    "productName": "sid",
+    "price": "78"
+  },
+  {
+    "id": 19,
+    "productName": "Orange",
+    "price": "89"
+  },
+  {
+    "id": 20,
+    "productName": "Apple",
+    "price": "990"
+  }
 ]

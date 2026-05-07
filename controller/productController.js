@@ -7,12 +7,14 @@ const getAllProducts = (req, res) =>{
 
 }
 const postProducts = (req, res) => {
-    const data = req.body;
-    console.log(data);
-    // res.json({value : "Iphone"});
-    res.json(data);
-
-}
+    try {
+        const result = product.saveProduct(req.body);
+        res.status(200).json(result);
+    } catch (error) {
+        console.log("Backend Error:", error); // Ye terminal mein dikhega
+        res.status(500).send("Server Crashed!");
+    }
+};
 
 
 

@@ -11,11 +11,14 @@
     
     <h1>Fetching All Products</h1>
 <form onsubmit="onSubmitHandler(event)" method="POST">
+    
     <label> Product Name:</label>
     <input type="text" id="product" name="productName"></input>
+    <label> Price:</label>
+    <input type="text" id="price" name="price"></input>
     <button type="submit">Add Product</button>
     </form>
-
+<span id="data"></span>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js"></script>
     <script src="/js/product.js"></script>
