@@ -1,11 +1,7 @@
 const express = require('express');
+const productRoute = require('./routes/productRoutes');
 const app = express();
-const productRoutes = require('./routes/productsRoutes');
+app.use(express.json());
+app.use(productRoute.route);
 
-app.use(express.json()); 
-
-app.use('/products', productRoutes);
-
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
+app.listen(3000, ()=> console.log('Online...'));

@@ -1,0 +1,7 @@
+ [
+    {"id" : 1, "productName": "I-phone", "price" : 1500 },
+    {"id" : 1, "productName": "china Model", "price" : 2500 },
+    {"id" : 1, "productName": "Samsung", "price" : 3500 },
+    {"id" : 1, "productName": "Nokia", "price" : 4500 },
+    {"id" : 1, "productName": "Jio", "price" : 5500 }
+]
